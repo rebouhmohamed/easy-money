@@ -1,6 +1,15 @@
+import { IsString, IsNotEmpty } from 'class-validator';
+
 export class CreateCardDto {
-    name: string;
-    title: string;
-    company: string;
-  }
-  
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  company: string;
+}

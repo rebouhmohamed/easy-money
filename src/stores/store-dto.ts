@@ -1,5 +1,11 @@
+import { IsString, IsNotEmpty } from 'class-validator';
+
 export class CreateStoreDto {
-    name: string;
-    location: string;
-  }
-  
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  location: string;
+}

@@ -4,8 +4,8 @@ import { CreateUserDto} from './users-dto';
 @Injectable()
 export class UsersService {
   private users = [
-    { id: 1, name: 'John Doe', email: 'Software Engineer', age: 26 },
-    { id: 2, name: 'Jane Smith', email: 'Product Manager', age: 26 },
+    { id: 1, name: 'John Doe', email: 'Software Engineer'  },
+    { id: 2, name: 'Jane Smith', email: 'Product Manager' },
   ];
 
   findAll() {
