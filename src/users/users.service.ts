@@ -11,6 +11,14 @@ export class UsersService {
   findAll() {
     return this.users;
   }
+  findOneById(id: number) {
+    const user = this.users.find((user) => user.id === id);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
+  }
+
   create(createUsersDto: CreateUserDto) {
     const newUser = {
       id: this.users.length + 1, // Simple id generation for demonstration
@@ -26,6 +34,29 @@ export class UsersService {
     }
     const deletedCard = this.users.splice(cardIndex, 1);
     return deletedCard[0];
+  }
+  updateUser(id: number, updateData: any) {
+    const user = this.users.find((user) => user.id === id);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    Object.assign(user, updateData);
+    return user;
+  }
+  getUsers(page: number, limit: number, search: string) {
+    const filteredUsers = this.users.filter(user =>
+      user.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    return {
+      data: filteredUsers.slice(startIndex, endIndex),
+      total: filteredUsers.length,
+    };
+  }
+  getUserCount() {
+    return { count: this.users.length };
   }
 }
 
